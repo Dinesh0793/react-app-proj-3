@@ -1,0 +1,21 @@
+# Node modules - not needed in Docker image
+node_modules/
+npm-debug.log*
+
+# Git files
+.git/
+.gitignore
+
+# Environment files
+.env
+.env.*
+
+# IDE & OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+
+# README (optional)
+README.md

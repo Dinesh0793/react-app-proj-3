@@ -1,0 +1,56 @@
+groups:
+  - name: nginx_alerts
+    rules:
+
+      # Alert if Nginx is DOWN (exporter unreachable)
+      - alert: NginxDown
+        expr: up{job="nginx"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "🔴 Nginx is DOWN"
+          description: "The React application (Nginx) has been unreachable for more than 1 minute."
+
+      # Alert if Nginx has zero active connections (possible crash)
+      - alert: NginxNoConnections
+        expr: nginx_connections_active == 0
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "⚠️ Nginx has no active connections"
+          description: "Nginx reports 0 active connections for 2 minutes — the app may be down."
+
+  - name: node_alerts
+    rules:
+
+      # Alert if Node Exporter (EC2) is unreachable
+      - alert: EC2InstanceDown
+        expr: up{job="node"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "🔴 EC2 Instance is DOWN"
+          description: "The EC2 server running the app is unreachable for more than 1 minute."
+
+      # Alert if CPU usage > 85%
+      - alert: HighCPUUsage
+        expr: 100 - (avg by(instance)(rate(node_cpu_seconds_total{mode="idle"}[2m])) * 100) > 85
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "⚠️ High CPU Usage"
+          description: "CPU usage is above 85% for more than 2 minutes."
+
+      # Alert if RAM usage > 90%
+      - alert: HighMemoryUsage
+        expr: (1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) * 100 > 90
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "⚠️ High Memory Usage"
+          description: "Memory usage is above 90% for more than 2 minutes."

@@ -1,0 +1,34 @@
+global:
+  scrape_interval: 15s        # Scrape every 15 seconds
+  evaluation_interval: 15s    # Evaluate rules every 15 seconds
+  scrape_timeout: 10s
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+            - alertmanager:9093
+
+# Load alert rules
+rule_files:
+  - "alert_rules.yml"
+
+# Scrape configurations
+scrape_configs:
+
+  # Prometheus itself
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  # Nginx metrics via nginx-prometheus-exporter
+  - job_name: "nginx"
+    static_configs:
+      - targets: ["nginx-exporter:9113"]
+    metrics_path: /metrics
+
+  # Node Exporter (EC2 system metrics: CPU, RAM, Disk)
+  - job_name: "node"
+    static_configs:
+      - targets: ["node-exporter:9100"]

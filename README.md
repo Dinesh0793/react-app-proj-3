@@ -16,7 +16,7 @@
 | Containerization | Docker + Docker Compose |
 | CI/CD | Jenkins (Multibranch Pipeline) |
 | Registry | Docker Hub (`dev` public, `prod` private) |
-| Cloud | AWS EC2 t2.micro (Ubuntu 22.04) |
+| Cloud | AWS EC2 t3.micro (Ubuntu 22.04) |
 | Monitoring | Prometheus + Grafana + Alertmanager |
 
 ## 🔁 CI/CD Flow

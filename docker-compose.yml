@@ -1,10 +1,8 @@
-version: "3.8"
-
 services:
 
   # ─── React App (Nginx) ────────────────────────────────────────────────────
   react-app:
-    image: react-devops-app:latest
+    image: dinesh0793/dev:latest
     container_name: react-app
     ports:
       - "80:80"

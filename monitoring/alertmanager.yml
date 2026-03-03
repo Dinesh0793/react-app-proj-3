@@ -20,12 +20,12 @@ route:
 receivers:
   - name: 'email-alerts'
     email_configs:
-      - to: 'YOUR_EMAIL@gmail.com'          # ← Replace with your email
-        from: 'alerts@devops-project.com'
+      - to: 'awsdinesh07@gmail.com'
+        from: 'awsdinesh07@gmail.com'
         smarthost: 'smtp.gmail.com:587'
-        auth_username: 'YOUR_GMAIL@gmail.com'   # ← Replace with your Gmail
-        auth_identity: 'YOUR_GMAIL@gmail.com'   # ← Replace with your Gmail
-        auth_password: 'YOUR_APP_PASSWORD'      # ← Replace with Gmail App Password
+        auth_username: 'awsdinesh07@gmail.com'
+        auth_identity: 'awsdinesh07@gmail.com'
+        auth_password: 'YOUR_16_CHAR_APP_PASSWORD_HERE'
         send_resolved: false   # Only alert when DOWN (not when resolved)
         headers:
           Subject: '🚨 [ALERT] {{ .GroupLabels.alertname }} - React App'

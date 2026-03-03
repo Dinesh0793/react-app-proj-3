@@ -28,3 +28,6 @@ logs/
 
 # OS
 .DS_Store
+
+# Secrets - never commit these!
+monitoring/alertmanager.yml
